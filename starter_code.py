@@ -35,8 +35,11 @@ def linear_search(data, target):
     """
     # TODO: Implement linear search that loops through each element and returns its index if found and -1 if not found.
     
-    pass # Delete pass and write your code here
-
+  def linear_search(data, target):
+    for i in range(len(data)):
+        if data[i] == target:
+            return i
+    return -1
 
 # ============================================================================
 # PART 2: Binary Search (Iterative)
@@ -67,8 +70,21 @@ def binary_search_iterative(data, target):
     """
     # TODO: Implement iterative binary search that uses iteration to find the target. Return the index if found and -1 if not found.
     
-    pass # Delete pass and write your code here
+def binary_search_iterative(data, target):
+    left = 0
+    right = len(data) - 1
 
+    while left <= right:
+        middle = (left + right) // 2
+
+        if data[middle] == target:
+            return middle
+        elif data[middle] < target:
+            left = middle + 1
+        else:
+            right = middle - 1
+
+    return -1
 
 # ============================================================================
 # PART 3: Binary Search (Recursive)
@@ -105,8 +121,22 @@ def binary_search_recursive(data, target, left=None, right=None):
     # TODO: Implement recursive binary search that uses recursion to find the target. Return the index if found and -1 if not found. Note that default parameters are already handled above.
 
     
-    pass # Delete pass and write your code here
+def binary_search_recursive(data, target, left, right):
+    if left > right:
+        return -1
 
+    middle = (left + right) // 2
+
+    if data[middle] == target:
+        return middle
+    elif data[middle] < target:
+        return binary_search_recursive(
+            data, target, middle + 1, right
+        )
+    else:
+        return binary_search_recursive(
+            data, target, left, middle - 1
+        )
 
 # ============================================================================
 # BENCHMARKING & TESTING
